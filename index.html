@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tech Charades — JWU Tech Fest 2026–27</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --amber:#E8960A;--amber-light:#FFF8E1;--amber-mid:#FAC75A;--amber-dark:#6B4200;
+  --teal:#1A9470;--teal-light:#E2F5EF;--teal-mid:#5DCAA5;--teal-dark:#084E3A;
+  --orange:#C9521E;--orange-light:#FEF0EA;--orange-mid:#F09B72;
+  --text:#1C1C1C;--text-muted:#5A5A5A;--text-hint:#8A8A8A;
+  --bg:#FDFAF3;--white:#FFFFFF;
+  --border:#E8E0CC;
+  --radius:12px;--radius-lg:18px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:16px;}
+a{color:var(--orange);text-decoration:none;font-weight:600;}
+a:hover{text-decoration:underline;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(150deg,#FFF8E0 0%,#FFFAE8 45%,#E8F8F2 100%);padding:3.5rem 1.5rem 3rem;text-align:center;border-bottom:3px solid var(--amber-mid);position:relative;overflow:hidden;}
+.hero-deco{position:absolute;border-radius:50%;opacity:.14;}
+.hero-deco.d1{width:220px;height:220px;background:var(--amber-mid);top:-60px;right:-50px;}
+.hero-deco.d2{width:150px;height:150px;background:var(--teal-mid);bottom:-50px;left:-40px;}
+.hero-deco.d3{width:80px;height:80px;background:var(--orange-mid);bottom:20px;right:15%;}
+.org-badge{display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;padding:5px 15px;border-radius:20px;text-transform:uppercase;margin-bottom:1rem;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,8vw,4.4rem);font-weight:800;color:var(--orange);line-height:1;margin-bottom:.35rem;position:relative;z-index:1;}
+.hero-sub{font-family:'Syne',sans-serif;font-size:clamp(.95rem,2.8vw,1.35rem);font-weight:700;color:var(--teal-dark);letter-spacing:.05em;margin-bottom:1rem;position:relative;z-index:1;}
+.tagline{font-size:.97rem;color:var(--text-muted);font-style:italic;margin-bottom:2rem;position:relative;z-index:1;}
+.info-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1;}
+.pill{background:var(--white);border:2px solid var(--amber-mid);border-radius:50px;padding:.5rem 1.1rem;}
+.pill-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-hint);display:block;margin-bottom:1px;}
+.pill-val{font-size:.88rem;font-weight:600;color:var(--amber-dark);}
+.reg-notice{margin-top:1.8rem;display:inline-block;background:var(--orange-light);border:1.5px dashed var(--orange-mid);border-radius:10px;padding:.7rem 1.4rem;font-size:.88rem;color:var(--orange);font-weight:500;position:relative;z-index:1;}
+.reg-notice strong{font-weight:700;}
+
+/* ── LAYOUT ── */
+.container{max-width:860px;margin:0 auto;padding:0 1.25rem;}
+section{padding:2.8rem 0 0;}
+
+/* ── SECTION HEADERS ── */
+.sec-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;}
+.sec-bar{width:5px;height:26px;border-radius:3px;background:var(--amber);flex-shrink:0;}
+.sec-head h2{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:var(--teal-dark);}
+.sec-head .sec-icon{font-size:1.3rem;}
+
+/* ── EVENT FLOW ── */
+.flow{display:flex;flex-direction:column;gap:0;margin-bottom:.5rem;}
+.flow-item{display:flex;gap:1.1rem;align-items:flex-start;position:relative;}
+.flow-item:not(:last-child)::after{content:'';position:absolute;left:19px;top:42px;width:2px;background:linear-gradient(to bottom,var(--amber-mid),var(--teal-mid));height:calc(100% - 10px);}
+.flow-num{width:40px;height:40px;border-radius:50%;background:var(--amber);color:var(--amber-dark);font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem;z-index:1;position:relative;}
+.flow-num.final{background:var(--teal);color:var(--teal-dark);}
+.flow-body{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;flex:1;margin-bottom:1.1rem;}
+.flow-body h3{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:800;color:var(--text);margin-bottom:.25rem;}
+.flow-body p{font-size:.87rem;color:var(--text-muted);line-height:1.55;}
+.flow-tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 9px;border-radius:20px;margin-bottom:.4rem;}
+.tag-amber{background:var(--amber-light);color:var(--amber-dark);}
+.tag-teal{background:var(--teal-light);color:var(--teal-dark);}
+.tag-orange{background:var(--orange-light);color:var(--orange);}
+
+/* ── HOW TO PLAY ── */
+.rules-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.rule-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.1rem 1rem;}
+.rule-card h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:.6rem;}
+.rule-card ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
+.rule-card ul li{font-size:.85rem;color:var(--text-muted);padding-left:1.1rem;position:relative;line-height:1.5;}
+.rule-card ul li::before{content:'›';position:absolute;left:0;color:var(--amber);font-weight:700;}
+
+/* ── CHIT CATEGORIES ── */
+.chit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.9rem;margin-bottom:1.5rem;}
+.chit-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem .9rem;text-align:center;}
+.chit-icon{font-size:1.6rem;margin-bottom:.4rem;}
+.chit-title{font-weight:700;font-size:.82rem;color:var(--teal-dark);margin-bottom:.3rem;}
+.chit-eg{font-size:.75rem;color:var(--text-hint);line-height:1.45;}
+
+/* ── SCORING ── */
+.score-cards{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.5rem;}
+.score-card{flex:1;min-width:160px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;}
+.score-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--amber);margin-bottom:.2rem;}
+.score-lbl{font-size:.82rem;color:var(--text-muted);}
+
+/* ── PRIZES ── */
+.prizes-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.5rem;}
+.prize-card{flex:1;min-width:150px;border:2px solid;border-radius:var(--radius-lg);padding:1.2rem 1rem;text-align:center;}
+.prize-card.gold{border-color:#E8960A;background:#FFFBEE;}
+.prize-card.silver{border-color:#AAAAAA;background:#F8F8F8;}
+.prize-card.bronze{border-color:#C47B3A;background:#FDF6EE;}
+.prize-card.part{border-color:var(--teal-mid);background:var(--teal-light);}
+.prize-icon{font-size:2rem;margin-bottom:.4rem;}
+.prize-place{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem;}
+.prize-card.gold .prize-place{color:#6B4200;}
+.prize-card.silver .prize-place{color:#4A4A4A;}
+.prize-card.bronze .prize-place{color:#7A3B00;}
+.prize-card.part .prize-place{color:var(--teal-dark);}
+.prize-desc{font-size:.81rem;color:var(--text-muted);line-height:1.45;}
+.prize-note{font-size:.8rem;color:var(--text-hint);text-align:center;margin-top:.5rem;font-style:italic;}
+
+/* ── STUDENT GUIDE ── */
+.guide-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.gtab{padding:.45rem 1rem;border:1.5px solid var(--border);border-radius:50px;font-size:.82rem;font-weight:600;cursor:pointer;background:var(--white);color:var(--text-muted);transition:all .2s;}
+.gtab.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+.guide-panel{display:none;}
+.guide-panel.active{display:block;}
+.guide-steps{display:flex;flex-direction:column;gap:.7rem;}
+.guide-step{display:flex;gap:.8rem;align-items:flex-start;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem;}
+.gstep-icon{width:32px;height:32px;border-radius:50%;background:var(--amber-light);color:var(--amber-dark);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.guide-step p{font-size:.87rem;color:var(--text-muted);line-height:1.5;}
+.guide-step p strong{color:var(--text);font-weight:600;}
+
+/* ── CONTACT ── */
+.contact-bar{background:var(--orange-light);border-top:2px solid var(--orange-mid);margin-top:3rem;padding:1.6rem 1.5rem;text-align:center;}
+.contact-bar .ctitle{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--orange);margin-bottom:.7rem;letter-spacing:.03em;}
+.contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem;font-size:.92rem;}
+.footer{background:var(--amber);padding:1.1rem;text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--amber-dark);letter-spacing:.07em;}
+
+/* ── DIVIDER ── */
+.divider{height:1.5px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:2.8rem 0 0;}
+
+@media(max-width:580px){
+  .rules-cols{grid-template-columns:1fr;}
+  .prizes-row{flex-direction:column;}
+  .score-cards{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-deco d1"></div>
+  <div class="hero-deco d2"></div>
+  <div class="hero-deco d3"></div>
+  <div class="org-badge">Computer Science Society · Jamshedpur Women's University</div>
+  <h1>Tech Charades</h1>
+  <div class="hero-sub">Guess the Gadget!</div>
+  <div class="tagline">One acts. All guess. One team wins.</div>
+  <div class="info-pills">
+    <div class="pill"><span class="pill-label">Date</span><span class="pill-val">30 May 2026</span></div>
+    <div class="pill"><span class="pill-label">Time</span><span class="pill-val">10:00 AM · 2 hrs</span></div>
+    <div class="pill"><span class="pill-label">Venue</span><span class="pill-val">Seminar Hall / Main Auditorium</span></div>
+    <div class="pill"><span class="pill-label">Team Size</span><span class="pill-val">4 members</span></div>
+    <div class="pill"><span class="pill-label">Report by</span><span class="pill-val">9:50 AM sharp</span></div>
+  </div>
+  <div class="reg-notice">📋 <strong>Registration opens soon</strong> — link will be shared by the coordinator.</div>
+</div>
+
+<div class="container">
+
+  <!-- EVENT FLOW -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-bar"></div>
+      <h2>Event Flow</h2>
+    </div>
+    <div class="flow">
+
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <div class="flow-tag tag-amber">Round 1 · All Teams</div>
+          <h3>Warm-Up Round</h3>
+          <p>All teams play. Basic tech terms — great for everyone to ease in. No eliminations. Every team gets equal turns.</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <div class="flow-tag tag-amber">Round 2 · All Teams</div>
+          <h3>Apps & Social Media</h3>
+          <p>All teams play. App names and social media platforms — act out your favourite apps without saying a word!</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <div class="flow-tag tag-teal">Round 3 · Top 6 Teams Advance</div>
+          <h3>Mix Round — Terms & Tech Personalities</h3>
+          <p>A mix of tech terms and famous tech personalities. Top 6 teams by score advance to the final stage.</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <div class="flow-tag tag-orange">Semi-Final · Top 3 Teams</div>
+          <h3>High-Difficulty Final Round</h3>
+          <p>Top 3 teams face off in a high-difficulty round. The toughest terms, fastest fingers, and sharpest mimes decide the winner.</p>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num final">🏅</div>
+        <div class="flow-body">
+          <div class="flow-tag tag-teal">Closing Ceremony</div>
+          <h3>Award Ceremony & Group Photo</h3>
+          <p>Winner announced. Certificate and medal distribution for all participants. Group photo to wrap up the Tech Fest!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HOW TO PLAY -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-bar"></div>
+      <h2>How to Play</h2>
+    </div>
+    <div class="rules-cols">
+      <div class="rule-card">
+        <h4>Basic Rules</h4>
+        <ul>
+          <li>Each team has 4 students.</li>
+          <li>One member acts per turn — they are the <em>Actor</em>.</li>
+          <li>Actor picks a chit from the bowl without showing anyone.</li>
+          <li>Use only gestures, body language, and expressions.</li>
+          <li>NO speaking, mouthing, pointing at objects, or writing in the air.</li>
+          <li>Team has a set time limit to guess the correct term.</li>
+          <li>1 point per correct guess. No point if time runs out.</li>
+        </ul>
+      </div>
+      <div class="rule-card">
+        <h4>During the Game</h4>
+        <ul>
+          <li>Only the Actor may pick the chit and perform.</li>
+          <li>Guessing members must speak clearly for the scorekeeper.</li>
+          <li>Once time is up, the turn ends immediately — no exceptions.</li>
+          <li>Be respectful to other teams and enjoy the experience.</li>
+          <li>Tie-breaker round if two teams share equal scores at the end.</li>
+          <li>Scorekeeper and coordinator's decision is final.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CHIT CATEGORIES -->
+    <div class="sec-head" style="margin-top:.5rem;">
+      <div class="sec-bar"></div>
+      <h2>Chit Categories</h2>
+    </div>
+    <div class="chit-grid">
+      <div class="chit-card">
+        <div class="chit-icon">💡</div>
+        <div class="chit-title">Tech Terms</div>
+        <div class="chit-eg">Bluetooth, WiFi, Firewall, RAM, Cloud</div>
+      </div>
+      <div class="chit-card">
+        <div class="chit-icon">📱</div>
+        <div class="chit-title">Apps & Platforms</div>
+        <div class="chit-eg">Instagram, YouTube, Google Maps, Zoom</div>
+      </div>
+      <div class="chit-card">
+        <div class="chit-icon">🎮</div>
+        <div class="chit-title">Gadgets & Devices</div>
+        <div class="chit-eg">Smartwatch, Drone, VR Headset, Earbuds</div>
+      </div>
+      <div class="chit-card">
+        <div class="chit-icon">🧑‍💼</div>
+        <div class="chit-title">Tech Personalities</div>
+        <div class="chit-eg">Elon Musk, Mark Zuckerberg, Steve Jobs</div>
+      </div>
+      <div class="chit-card">
+        <div class="chit-icon">🤖</div>
+        <div class="chit-title">Trending Concepts</div>
+        <div class="chit-eg">Artificial Intelligence, Selfie, Podcast</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SCORING -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-bar"></div>
+      <h2>Scoring</h2>
+    </div>
+    <div class="score-cards">
+      <div class="score-card">
+        <div class="score-num">+1</div>
+        <div class="score-lbl">Point per correct guess within time</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">0</div>
+        <div class="score-lbl">Points if time runs out — chit discarded</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">🔁</div>
+        <div class="score-lbl">Tie-breaker round for equal scores</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">⚖️</div>
+        <div class="score-lbl">Coordinator's decision is final</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRIZES -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-bar"></div>
+      <h2>Prizes & Recognition</h2>
+    </div>
+    <div class="prizes-row">
+      <div class="prize-card gold">
+        <div class="prize-icon">🥇</div>
+        <div class="prize-place">1st Place</div>
+        <div class="prize-desc">Gold Medals + Certificates for all team members</div>
+      </div>
+      <div class="prize-card silver">
+        <div class="prize-icon">🥈</div>
+        <div class="prize-place">2nd Place</div>
+        <div class="prize-desc"> Medals + Certificates for all team members</div>
+      </div>
+      
+    </div>
+    
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STUDENT PARTICIPATION GUIDE -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-bar"></div>
+      <h2>Student Participation Guide</h2>
+    </div>
+    <div class="guide-tabs">
+      <div class="gtab active" onclick="switchTab('before')">Before the Event</div>
+      <div class="gtab" onclick="switchTab('during')">During the Event</div>
+      <div class="gtab" onclick="switchTab('scoring-guide')">Scoring Notes</div>
+    </div>
+
+    <div class="guide-panel active" id="panel-before">
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="gstep-icon">1</div>
+          <p><strong>Register your team</strong> of exactly 4 members at the registration desk by 10:00 AM. Registration link will be shared by the coordinator soon.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">2</div>
+          <p><strong>Collect your team number</strong> and remember it — it will be called during rounds.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">3</div>
+          <p><strong>No prior preparation needed</strong> — just bring your energy and teamwork! Arrive by 9:50 AM sharp at Seminar Hall / Main Auditorium.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-panel" id="panel-during">
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="gstep-icon">👤</div>
+          <p><strong>Only the Actor</strong> may pick the chit and act — other team members must remain seated.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">🗣️</div>
+          <p><strong>Speak clearly</strong> when guessing so the scorekeeper can hear and record the correct answer.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">⏱️</div>
+          <p><strong>Accept the timer's decision</strong> — once time is up, the turn ends immediately.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">🤝</div>
+          <p><strong>Be respectful</strong> to other teams. Enjoy the experience — it's all about fun and teamwork!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-panel" id="panel-scoring-guide">
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="gstep-icon">+1</div>
+          <p><strong>1 point</strong> is awarded per correct guess made within the time limit.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">🔁</div>
+          <p>A <strong>tie-breaker round</strong> will be held if two teams have equal scores at the end of any qualifying stage.</p>
+        </div>
+        <div class="guide-step">
+          <div class="gstep-icon">⚖️</div>
+          <p>The <strong>decision of the scorekeeper and coordinator is final</strong>. No appeals after the round ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+</div><!-- /container -->
+
+<!-- CONTACT -->
+<div class="contact-bar">
+  <div class="ctitle">Event Coordinator — Computer Science Society</div>
+  <div class="contact-links">
+    <span>📞 <a href="tel:+917856036343">+91 78560 36343(Alfisha Aqdash)</a></span>
+    <span>✉️ <a href="mailto:alfiaqdash@gmail.com">alfiaqdash@gmail.com</a></span>
+  </div>
+</div>
+<div class="footer">Report 9:50 AM · Seminar Hall / Main Auditorium · JWU Tech Fest 2026–27</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.gtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.guide-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
